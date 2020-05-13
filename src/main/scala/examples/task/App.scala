@@ -16,7 +16,10 @@ object App {
 
   def task() = for {
     desc <- ZIO.descriptor
-    _ <- console.putStrLn(desc.toString) 
+    _ <- console.putStrLn { s"""
+      id: ${desc.id}
+      status: ${desc.status}
+    """}
   } yield ()
 
 
