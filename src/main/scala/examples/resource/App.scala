@@ -13,8 +13,11 @@ object App {
       release = (successOrNot: Boolean) => ZIO.unit
       res = (v: Int) => ZManaged.make(q.offer(v))(release) 
       program = res(1) *> res(2) *> res(3)
-      values <- program.use_(ZIO.unit) *> q.take *> q.take *> q.take
-    } yield values
+      _ <- program.use_(ZIO.unit) // if we don't call use_(), q.take will hangs forever
+      v1 <- q.take
+      v2 <- q.take
+      v3 <- q.take
+    } yield (v1, v2, v3)
     val runtime = Runtime.default
     println(runtime.unsafeRun(result))
   }

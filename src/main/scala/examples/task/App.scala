@@ -1,4 +1,4 @@
-package task
+package examples.task
 
 import zio._
 

@@ -1,4 +1,4 @@
-package queue
+package examples.queue
 
 import zio._
 import scala.util.Random

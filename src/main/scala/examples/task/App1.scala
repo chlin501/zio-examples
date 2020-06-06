@@ -1,4 +1,4 @@
-package task
+package examples.task
 
 import zio._
 import zio.duration._
